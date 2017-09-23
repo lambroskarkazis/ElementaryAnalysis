@@ -1,0 +1,131 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb}
+
+\title{MATH 325 - Lecture 2}
+\author{Lambros Karkazis}
+\date{September 23, 2017}
+
+\begin{document}
+
+\maketitle
+\section{Logical Operators}
+\underline{Negation:} NOT, \textasciitilde, $\neg$\\
+\underline{Conjunction:} AND, $\wedge$\\
+\underline{Disjunction:} OR, $\vee$\\
+\underline{Implication:} IF... THEN..., $\implies$\\
+\underline{Equivalence:} ...IF AND ONLY IF..., IFF $\iff$\\
+\underline{Precedence:} ($1^{st}$) NOT, AND, OR, IF... THEN..., IFF (Last)\\
+
+\section{Example 4}
+\subsection{Logical Analog of DeMorgan's Laws (p.33)}
+Logical Definition of DeMorgan's Laws
+\begin{align*}
+	&\neg(P \vee Q) \iff \neg P \wedge \neg Q\\
+	&\neg(P \wedge Q) \iff \neg P \vee \neg Q\\
+\end{align*}
+Truth Table proving $\neg(P \wedge Q) \iff \neg P \vee \neg Q$
+\begin{center}
+        \begin{tabular}{||c | c | c | c | c | c | c ||} 
+        \hline\hline
+        $P$ & $Q$ & $\neg P$ & $\neg Q$ & $P \wedge Q$ &$ \neg(P \wedge Q)$ & $\neg P \vee \neg Q$ \\ [0.5ex] 
+        \hline\hline
+        F & F & T & T & F & \textbf{T} & \textbf{T}\\ 
+        \hline
+        F & T & T & F & F & \textbf{T} & \textbf{T}\\
+        \hline
+        T & F & F & T & F &\textbf{T} & \textbf{T}\\
+        \hline
+        T & T & F & F & T & \textbf{F} & \textbf{F}\\
+        \hline\hline
+        \end{tabular}
+\end{center}
+
+\subsection{The Negation of $P \implies Q$}
+$P \wedge \neg Q \iff \neg(P \implies Q)$
+
+\begin{center}
+	\begin{tabular}{|| c | c | c | c | c | c ||}
+	\hline\hline
+	$P$ & $Q$ & $\neg Q$ & $P \wedge \neg Q$ & $P \implies Q$ & $\neg (P \implies Q)$ \\ [0.5ex]
+	\hline\hline
+	T & T & F & \textbf{F} & T & \textbf{F}\\
+	T & F & T & \textbf{T} & F & \textbf{T}\\
+	F & T & F & \textbf{F} & F & \textbf{F}\\
+	F & F & T & \textbf{F} & T & \textbf{F}\\
+	\hline\hline
+	\end{tabular}
+\end{center}
+
+Note:
+\begin{align*}
+	& \neg(P \implies Q) \iff P \wedge \neg Q && \text{Negation of an Implication}\\
+	& \neg[\neg(P \implies Q)] \iff \neg(P \wedge \neg Q) && \text{Double Negation}\\
+	& P \implies Q \iff \neg P \vee Q && \text{Equivalent Form of Implication}\\
+\end{align*}
+
+\section{Definition 5 (p. 34):}
+Suppose $P$ and $Q$ are statements.
+\begin{enumerate}
+	\item Contrapositive of $P \implies Q$ is $\neg Q \implies \neg P$
+	\item Converse of $P \implies Q$ is $Q \implies P$
+	\item Inverse of $P \implies Q$ is $\neg P \implies \neg Q$
+	\item Negation of $P \implies Q$ is $P \wedge \neg Q$
+\end{enumerate}
+
+\subsection{Remark 6:}
+\begin{itemize}
+	\item The contrapositive is always equivalent ot the original implication.
+	\item The converse and inverse are not equivalent to an implication.
+	\item The converse and inverse are contrapositives.
+	\item To prove equivalence, once ust prove implication and its converse.
+\end{itemize}
+
+\section{Variables and Quanitifiers (sec 1.4)}
+Make statements that depend on an unspecified parameter, a \underline{variable}, but a context is needed to determine the truth value.
+\subsection{Example 7}
+$P(x) = x^2 - 5x + 6 = 0$\\
+$P(x)$ is a sentence, but not a statement. You need information about x to determine its truth value.\\
+Need to know what ``universe'' x lives in.\\
+$P(0), P(2)$ are statements:
+$P(0) = 0^2 - 5*(0) + 6 = 0$\\
+$6 \not= 0$\\
+False\\\\
+$P(2) = 2^2 - 2*(5) + 6 = 0$\\
+$0 = 0$
+True\\\\
+Quantifiers are used to provide a larger context for variables\\
+\subsection{Definition 8 (p 33)}
+\begin{itemize}
+	\item Phrases such as ``For all...'', ``For every...'' are \underline{universal quantifiers}: $\forall$
+	\item Phrases such as ``There exists...'', ``There is at least one...'' are \underline{existential quantifiers}: $\exists$
+\end{itemize}
+\subsubsection{More Notation:}
+$\ni$, s.t.: ``such that''\\
+$\exists !$: ``there exists a unique (exactly one)...''\\\\
+
+\textbf{WARNING:} Unless otherwise stated, all variables are real numbers.
+\subsubsection{Convention:}
+If a variable appears in an antecedent of an implication without a quantifier, then we assume there is a universal quantifier. $x > 1 \implies x^2 > 1$ really means $\forall x \in \mathbb{R}, x > 1 \implies x^2 > 1$
+\subsubsection{Example:}
+$P(x) = x^2 - 5x + 6 = 0$\\
+(Assuming x is a real number)\\
+$\forall x \in \mathbb{R}, P(x) = x^2 - 5x + 6 = 0$ means...\\
+``For all real numbers $x$, $x^2 - 5x + 6 = 0$''\\
+(False statement because some real numbers $x$ don't satisfy $P(x)$)\\\\
+$\exists x \ni P(x)$ means...\\
+``There is a real number x s.t. $x^2 - 5x + 6 = 0$\\
+(True statement since $P(2)$ evalulates to true)\\\\
+$\exists ! x \ni P(x) = 0$ means...\\
+``There exactly one real s.t. $x^2-5x+6=0'$''\\
+(False statement since $P(2)$ and $P(3)$ both evaluate to true)\\\\
+\textbf{WARNING:} $\forall x, \exists y$ is not the same as $\exists y, \forall x$
+\subsubsection{Example 8: (Prob 4)}
+Suppose that $P(x, y)$ is a statement for each x and y.\\
+$\forall x, y, P(x, y) \iff \forall x, \forall y P(x, y) \iff \forall y, \forall x, P(x, y)$\\
+Means $P(x, y)$ is true regardless of what x and y are (order does not matter for the same quantifier).\\
+$\exists x,y \ni P(x,y) \iff \exists x \ni \exists y \ni P(x, y) \iff \exists y \ni \exists x \ni P(x, y)$\\
+Means there's atleast one x and one y that satisfies $P(x, y)$ (order does not matter for the same quantifier).\\
+$\forall x, \exists y \ni P(x,y) \not\iff \exists \ni \forall x, P(x,y)$\\
+$\forall x, \exists y \ni P(x, y)$ $y$ can depend on $x$.\\
+$\exists y \ni \forall x, P(x, y)$ $y$ cannot depend on x. There is some $y$ s.t. no matter what $x$, $P(x, y)$ holds.
+\end{document}
