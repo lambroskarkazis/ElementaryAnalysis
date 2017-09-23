@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb}
+
+% Courtesy of Peter Grill on Stack Overflow https://tex.stackexchange.com/questions/75361/is-there-no-good-way-to-write-not-iff
+\newcommand{\notiff}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
+
+\title{MATH 325 - Lecture 3}
+\author{Lambros Karkazis}
+\date{September 23, 2017}
+
+\begin{document}
+
+\maketitle
+\section{Logical Operators, Cont.}
+\underline{Implication:} $\implies$, ``IF ... THEN ...''\\
+\underline{Biconditional:} $\iff$, ``...IF AND ONLY IF...'', ``...IFF...''\\
+\underline{Conjunction:} $\wedge$, ``...AND...''\\
+\underline{Disjunction:} $\vee$, ``OR''\\
+\underline{Universal Quanitifer:} $\forall$, ``FOR ALL...''\\
+\underline{Existential Quantifier:} $\exists$, ``THERE EXISTS...''\\
+\underline{Unique Quantifier:} $\exists !$, ``THERE EXISTS ONLY ONE...''\\
+
+$\forall x, \exists y \ni P(x,y) \notiff \exists y \ni \forall x \ni P(x,y)$\\
+In $\forall x, \exists y \ni P(x,y)$ each $y$ can depend on $x$\\
+In $\exists y \ni \forall x \ni P(x,y)$ all $x$ must be true for a single $y$\\
+
+\section{Negation With Quantifiers}
+Suppose that
+\begin{align*}
+	& x: && \text{A person in class}\\
+	& P(x): && x \text{ is awake}\\
+\end{align*}
+$\forall x, P(x) \iff$ Everyone in class is awake.\\
+What is the negation?
+$\exists x \ni \neg P(x) \iff$ Atleast one person in class is asleep.\\
+\subsection{Truth Table}
+\begin{center}
+        \begin{tabular}{|| c | c ||} 
+        \hline\hline
+        $\forall x, P(x)$ & $\exists x \ni \neg P(x)$\\ [0.5ex] 
+        \hline\hline
+       T & F\\ 
+        \hline
+        F & T\\
+        \hline\hline
+        \end{tabular}
+\end{center}
+\subsection{Negation w/ Quantifier Rules}
+$\neg [ \forall x, P(x) ] \iff \exists x \ni \neg P(x)$\\
+$\neg [ \exists x, P(x) ] \iff \forall x, \neg P(x)$
+
+\subsection{Example 9 (Prob. 3,5)}
+\begin{align*}
+	& A, B: && \text{Sets of Real Numbers } (\mathbb{R}) \\
+	& h: && \text{Natural Number} (\mathbb{N}) \\
+	& f_n, f, g: && \mathbb{R} \text{-valued functions of real numbers}\\
+\end{align*}
+
+\subsection{Notation:}
+\underline{Membership:} $\in$, ``IN''\\
+Indicates that the set on the right contains the element on the left.\\
+\begin{itemize}
+	\item For every $x$ in $A$, $f(x) > 8$. Let's negate that.\\
+	$\neg [ \forall x \in A, f(x) > 8 ] \iff \exists x \in A \ni f(x) <= 8$\\
+	In words, There exists an $x$ in $A$ such that $f(x) <= 8$.\\
+	Basically, you change the quantifier and negate the statement
+	\item There is a positive real number $y$ s.t. $0 <= g(y) < 1$
+	\begin{align*}
+		& \text{Statement:} && \exists y \in \mathbb{R} \ni y > 0 \wedge 0 <= g(y) < 1\\
+		& \text{Negation:} && \forall y \in \mathbb{R}, y <= 0 \vee g(y) < 0 \vee g(y) >= 1\\
+		& \text{In words:} && \text{For all real numbers $y$, either $y <= 0$ or $g(y) < 0$ or $g(y) >= 1$}\\
+		& \text{Alternate Statement:} && \exists y \in \mathbb{R}, y > 0, \ni 0 <= g(y) < 1\\
+		& \text{Negation:} && \forall y \ni \mathbb{R}, y > 0, g(y) < 0 \vee g(y) >= 1\\
+		& \text{In words:} && \text{For all positive real numbers $y$, either $g(y) < 0$ or $g(y) >= 1$}\\
+	\end{align*}
+	The previous example demonstrates that readers can interpret statements differently. Some readers regard the $y > 0$ as describing the universe of discourse, i.e. $\exists y \in (0, \infty)$. Another valid interpretation is that $y \in \mathbb{R}$ and $y > 0$ is part of the hypothesis. In the later case, the negation affects the $y > 0$.
+	\item Given $\epsilon > 0$, There is an $N$ s.t. for any $x$, we find $|f_n(x) - f(x)| < \epsilon$, whenever $n > N$.
+	\begin{align*}
+		& \text{Statement:} && \forall \epsilon \in \mathbb{R}, \epsilon > 0, \exists N \in \mathbb{R} \ni \forall x \in \mathbb{R}, n > N \implies |f_n(x) - f(x) | < \epsilon \\
+		& P(n, N): && n > N \\
+		& Q(n ,x, \epsilon): && |f_n(x) - f(x)| < \epsilon\\
+		& \text{Negation:} && \exists \epsilon \in \mathbb{R}, \epsilon > 0, \ni \forall N \in \mathbb{R}, \exists x \in \mathbb{R} \ni \neg[P(n,N) \implies Q(n, x, \epsilon)]\\
+		& && \exists \epsilon \in \mathbb{R}, \epsilon > 0, \ni \forall N \in \mathbb{R}, \exists x \in \mathbb{R} \ni P(n,N) \wedge \neg Q(n, x, \epsilon)\\
+		& && \exists \epsilon \in \mathbb{R}, \epsilon > 0, \ni \forall N \in \mathbb{R}, \exists x \in \mathbb{R} \ni n > N \wedge |f_n(x) - f(x)| >= \epsilon \\
+		& \text{In words:} && \text{There is an $\epsilon > 0$ s.t. no matter how $N \in \mathbb{R}$ is picked,}\\
+		& && \text{there is some $x \in \mathbb{R}$ and some $n$ s.t. $n > N$ and $|f_n(x) - f(x)| >= \epsilon$} \\
+	\end{align*}
+	Recall that if a variable appears in the ``IF'' portion of an implication and has no quantifier, use the universal quantifier.
+	\begin{align*}
+		& P(x) \implies Q(x) \iff \forall x, P(x) \implies Q(x) \\
+	\end{align*}
+\end{itemize}
+
+\section{Proof Construction}
+\subsection{Basic Rules}
+\underline{Definition:} Make sure everything in the proof has a precise definition. If a new term or notation is used, define it. Ensure the `universe' for a variable is clear.\\
+\underline{Standard Notation:} Try to use standard notation, ensure that expressions have an unambiguous interpretation.\\
+\underline{Provide Details:} The reader needs to be able to follow your reasoning. Obvious facts and well-known results can be assumed. This skill requires practice \& feedback. Use proper English including complete setences and correct grammar.
+
+\end{document}

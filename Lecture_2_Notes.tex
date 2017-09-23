@@ -1,6 +1,10 @@
 \documentclass{article}
 \usepackage{amsmath,amsthm,amssymb}
 
+% Courtesy of Peter Grill on Stack Overflow https://tex.stackexchange.com/questions/75361/is-there-no-good-way-to-write-not-iff
+\newcommand{\notiff}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
+
 \title{MATH 325 - Lecture 2}
 \author{Lambros Karkazis}
 \date{September 23, 2017}
@@ -125,7 +129,7 @@ $\forall x, y, P(x, y) \iff \forall x, \forall y P(x, y) \iff \forall y, \forall
 Means $P(x, y)$ is true regardless of what x and y are (order does not matter for the same quantifier).\\
 $\exists x,y \ni P(x,y) \iff \exists x \ni \exists y \ni P(x, y) \iff \exists y \ni \exists x \ni P(x, y)$\\
 Means there's atleast one x and one y that satisfies $P(x, y)$ (order does not matter for the same quantifier).\\
-$\forall x, \exists y \ni P(x,y) \not\iff \exists \ni \forall x, P(x,y)$\\
+$\forall x, \exists y \ni P(x,y) \notiff \exists \ni \forall x, P(x,y)$\\
 $\forall x, \exists y \ni P(x, y)$ $y$ can depend on $x$.\\
 $\exists y \ni \forall x, P(x, y)$ $y$ cannot depend on x. There is some $y$ s.t. no matter what $x$, $P(x, y)$ holds.
 \end{document}
