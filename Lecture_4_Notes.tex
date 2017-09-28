@@ -1,0 +1,159 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb}
+
+% Courtesy of Peter Grill on Stack Overflow https://tex.stackexchange.com/questions/75361/is-there-no-good-way-to-write-not-iff
+\newcommand{\notiff}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
+
+\title{MATH 325 - Lecture 4}
+\author{Lambros Karkazis}
+\date{September 23, 2017}
+
+\begin{document}
+
+\maketitle
+\section{Proofs Continued}
+\subsection{Basic Rules (p.28-31)}
+\begin{itemize}
+	\item Use precise definitions
+	\item Define new symbols \& notation
+	\item Include details
+	\item Use proper English
+	\begin{itemize}
+		\item Use complete sentences
+		\item Use correct grammar \& punctuation
+	\end{itemize}
+	\item Check for correctness
+\end{itemize}
+
+\subsection{Grading}
+\begin{itemize}
+	\item Mathematical correctness \& logical consistency
+	\item Sufficient details
+	\item Correctness of language
+\end{itemize}
+
+\subsection{Main Types}
+
+\begin{itemize}
+	\item Deductive
+	\begin{itemize}
+		\item Applying a general principle to a particular case
+		\item All men are mortal. Socrates is a man. Socrates is mortal.
+	\end{itemize}
+	\item Inductive
+	\begin{itemize}
+		\item Establish a general principle from individual cases
+		\item Usually not good for a proof \footnote{This refers more to inductive reasoning. Inductive proofs are fine, but inductive reasoning just generates hypothesis}
+	\end{itemize}
+\end{itemize}
+
+Conjectures are unestablished statements. Must get proved with formal logical reasoning.
+
+\section{Example 10:}
+The function
+\begin{align*}
+	& f(n) = n^2 + n + 17 \\
+\end{align*}
+seems to produce primes when $n = 0,1,2,...$
+\begin{align*}
+	& f(0) = 17 \\
+	& f(1) = 19 \\
+	& f(2) = 23 \\
+	& . \\
+	& . \\
+	& . \\
+	& f(10) = 127 \\
+	& . \\
+	& . \\
+	& . \\
+	& f(15) = 257 \\
+\end{align*}
+Induction leads to the \underline{conjecture}
+\begin{align*}
+	& P: \forall n \in \mathbb{N}, f(n) \text{ is prime}\\
+\end{align*}
+However, the cases observed do not prove our statement. Instead, we have shown
+\begin{align*}
+	& Q: \exists n = 0,1,2,3... \ni f(n) \text{ is a prime} \\
+\end{align*}
+It turns out that our conjecture ($P$) is False. To demonstrate this, we will prove its negation ($\neg P$) is True
+\begin{align*}
+	& \neg P: \exists n \in \mathbb{N} \ni f(n) \text{ is not prime} \\
+\end{align*}
+This technique is known as a \underline{counter example}. One can either produce one or show that it exists. Here's a counter example for $P$
+\begin{align*}
+	& f(17) = 17^2 + 17 + 17 = 17 * 19 \\
+\end{align*}
+\section{Example 11:}
+Consider
+\begin{align*}
+	& f(m,n) = m^2 + m + n \\
+\end{align*}
+It seems that $f(m, m+1)$ produces perfect squares for $1,2,3,...$
+\begin{align*}
+	& f(1,2) = 4 = 2^2 \\
+	& f(2,3) = 9 = 3^2 \\
+	& . \\
+	& . \\
+	& . \\
+	& f(12,13) = 169 = 13^2 \\
+\end{align*}
+Inductive reasoning leads to the conjecture
+\begin{align*}
+	& P: \forall m = 1,2,3,..., f(m, m+1) = (m+1)^2 \\
+\end{align*}
+To prove, we use general principles (deductive reasoning).\\
+\begin{align*}
+ 	& \text{Let } m = 1,2,3,...  && \text{Given} \\
+ 	& f(m, m+1) = m^2 + m + (m + 1) && \text{Definition of }f \\
+ 	& = m^2 + (2m) + 1 && \text{Addition is associative} \\
+ 	& = (m+1) * (m+1) && \text{Factoring} \\
+ 	& = (m+1)^2 && \text{Definition of a Square}\\
+\end{align*}
+Since $m$ was never fixed to a particular value, the statement $P$ is true.
+\section{Structure of Theorems}
+Most math theorems have the structure form
+\begin{align*}
+ 	& P \implies Q \\
+\end{align*}
+This means that whenever $P$ is true, $Q$ is also True.
+\begin{align*}
+ 	& P \text{ is the hypothesis} \\
+ 	& Q \text{ is the conclusion} \\
+\end{align*}
+What is included in $P$ is not always uniquely identified.
+\section{Example 12 (Problem 1, Assignment 2):}
+\subsection{Theorem:} Suppose that $I$ is a closed, bounded interval in $\mathbb{R}$. Let $f: I \rightarrow \mathbb{R}$ \footnote{This means that $f$ is an $\mathbb{R}$-valued function defined on $I$} be given. If $f$ is continous on $I$, then there is a number $x_0 \in I$ s.t. the minimum of $f$ over $I$ is $f(x_0)$.
+\subsection{Hypothesis:}
+(Notation, definitions and context of theorem)
+\begin{itemize}
+\item $I$ is closed
+\item $I$ is bounded
+\item $I$ is an interval in $\mathbb{R}$
+\item $f$ is an $\mathbb{R}$-valued funciton on $I$
+\end{itemize}
+(Main hypothesis)
+\begin{itemize}
+\item $f$ is continous
+\end{itemize}
+
+\subsection{Conclusion:}
+\begin{align*}
+ 	& \exists x_0 \in I \ni f(x_0) \text{ is a minimum} \\
+\end{align*}
+Depending on what is included in the $P$ and $Q$ of $P \implies Q$ affects different strategies for proof.
+\subsubsection{Proving the Contrapositive}
+\begin{align*}
+ 	& (\neg Q \implies \neg P) \\
+\end{align*}
+We want to show:\\
+Suppose $I$ is a closed and bounded, then\\
+$f: I \in \mathbb{R}$\\
+If $\forall x_0 \in I, f(x_0)$ is \underline{not} the minimum of $f$, then $f$ is \underline{not} continous on $I$
+\subsubsection{Proof by \underline{Contradiction}}
+Assume hypothesis, assume negation of conclusion. Show $((P \wedge \neg Q) \implies \text{ False})$\\
+If negation is false, then the original statement is true.\\
+$I$ is a closed, bounded interval and $f: I \rightarrow \mathbb{R}$ is continous on $I$ and that for every $x_0 \in I, f(x_0)$ is not the min of $f$ over $I$\\
+Show this leads to something that is always false. (e.g. $1>1$, $\mathbb{R}$ is finite, $I$ is open)
+\end{document}
