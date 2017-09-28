@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb}
+
+% Courtesy of Peter Grill on Stack Overflow https://tex.stackexchange.com/questions/75361/is-there-no-good-way-to-write-not-iff
+\newcommand{\notiff}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
+
+\title{MATH 325 - Lecture 1}
+\author{Lambros Karkazis}
+\date{September 27, 2017}
+
+\begin{document}
+
+\maketitle
+
+\section{Logic and Proof Construction}
+\underline{Statement:} a sentence with a truth value (True or False)\\
+Ex: are these statements?
+\begin{enumerate}
+\item It is windy: No, `windy' is not well-defined.
+\item Life is good: no, `good' is not well-defined.
+\item Every continous function is differentiable: Yes (This statement is false).
+\item There is a continous function that is differentiable: Yes (This statement is true).
+\item $x^2 - 5x + 6 = 0$: No ($x$ is not defined).
+\item This sentence is false: No, cannot determine a truth value.
+\end{enumerate}
+\underline{Compound Statement:} formed from simpler component statements. A table of truth values for a statement and all its components is a truth table.
+\subsection{Common Connectives:}
+\begin{itemize}
+\item \underline{Negation:} not \textasciitilde or $\neg$
+\item \underline{Conjunction:} and $\wedge$
+\item \underline{Disjunction:} or $\vee$
+\item \underline{Implication:} if...then... $\implies$
+\item \underline{Biconditional:} iff... $\iff$
+\end{itemize}
+\begin{center}	
+\begin{tabular}{|| c | c | c | c | c | c ||}
+\hline\hline
+$P$ & $Q$ & $P \wedge Q$ & $P \vee Q$ & $P \implies Q$ & $P \iff Q$ \\ [0.5ex] 
+\hline\hline
+T & T & T & T & T & T \\
+\hline
+T & F & F & T & F & F \\
+\hline
+F & T & F & T & F & F \\
+\hline
+F & F & F & F & T & T \\
+\hline\hline
+\end{tabular}
+\end{center}
+\subsubsection{Precendence Rules:}
+\begin{align*}
+ 	& \neg \rightarrow \wedge \rightarrow \vee \rightarrow \implies \rightarrow \iff \\
+\end{align*}
+\subsubsection{Example:}
+$P \iff Q$ is equivalent to $(P \wedge Q) \vee (\neg P \wedge \neg Q)$
+\begin{center}	
+\begin{tabular}{|| c | c | c | c | c | c | c ||}
+\hline\hline
+$P$ & $Q$ & $\neg P$ & $\neg Q$ & $P \wedge Q$ & $\neg P \wedge \neg Q$ & $(P \wedge Q) \vee (\neg P \wedge \neg Q)$ \\ [0.5ex] 
+\hline\hline
+T & T & F & F & T & F & T \\
+\hline
+T & F & F & T & F & F & F \\
+\hline
+F & T & T & F & F & F & F \\
+\hline
+F & F & T & T & F & T & T \\
+\hline\hline
+\end{tabular}
+\end{center}
+
+\end{document}
