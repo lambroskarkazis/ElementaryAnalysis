@@ -1,0 +1,163 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb}
+
+% Courtesy of Peter Grill on Stack Overflow https://tex.stackexchange.com/questions/75361/is-there-no-good-way-to-write-not-iff
+\newcommand{\notiff}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{"}$\hidewidth\cr$\iff$}}}}
+
+\title{MATH 325 - Lecture 16}
+\author{Lambros Karkazis}
+\date{September 23, 2017}
+
+\begin{document}
+
+\maketitle
+
+\section{Administrative Concerns}
+Assignment 4 due next Wednesday, October 4.\\
+\subsection{Exam Monday, October 9:}
+\begin{itemize}
+\item Problem 1 (10pts)
+\begin{itemize}
+\item State a definition or result from class.
+\end{itemize}
+\item Problem 2 (20pts)
+\begin{itemize}
+\item Negate a statement
+\item Write it logically
+\item Explain its meaning
+\end{itemize}
+\item Problems 3 and 4 (35pts each) (Pick 2 of 3 possible)
+\begin{itemize}
+\item Logic, sets, functions
+\item Real number system, upper/lower bounds, supremums/infinimums, completeness axiom, closure/limit and isolated pts
+\item Bolzane-Weierstrass Sequences
+\item Subsequences
+\item Cauchy Sequences
+\end{itemize}
+\end{itemize}
+\section{Theorem (Limits Preserve Order)}
+Suppose $\{a_n\} \{b_n\} \subset \mathbb{R}$ are given with
+\begin{align*}
+ 	& \lim_{n \rightarrow \infty}a_n = L \wedge \lim_{n \rightarrow \infty}b_n = M  \\
+\end{align*}
+and
+\begin{align*}
+ 	& \forall n \in \mathbb{N}, a_n > b_n \\
+\end{align*}
+then
+\begin{align*}
+ 	& L \leq M
+\end{align*}
+\subsection{Scratch Work:}
+Problem 3, assignment 3:
+\begin{align*}
+ 	& \forall \epsilon > 0, x < y + \epsilon \implies x \leq y \\
+\end{align*}
+It is enough to show
+\begin{align*}
+ 	& \forall \epsilon > 0, L \leq M + \epsilon \\
+ 	& \iff L - a_n + a_n < M - b_n + b_n  + \epsilon \\
+ 	& \iff a_n < b_n + (M - b_n) - (L - a_n) + \epsilon \\
+\end{align*}
+We want to show that $(M - b_n) - (L - a_n) + \epsilon$ is bigger than or equal to zero.
+\begin{align*}
+ 	& (M - b_n) - (L - a_n) + \epsilon \geq 0 \\
+ 	& \iff (L - a_n) - (M - b_n) \leq \epsilon \\
+ 	& \impliedby | L - a_n | + |M - b_n| \leq \epsilon \\
+\end{align*}
+We want to make $|L - a_n| \leq \frac{\epsilon}{2}$ and $|M - b_n| \leq \frac{\epsilon}{2}$. Choose $N \in \mathbb{N}$ such that
+\begin{align*}
+ 	& |a_n - L| < \frac{\epsilon}{2} \\
+ 	& |b_n - M| < \frac{\epsilon}{2} \\
+\end{align*}
+\subsection{Proof:}
+We will show that $\forall \epsilon > 0, L < M + \epsilon$. Then, Problem 3(a) from homework assignment 3 proves the result $L \leq M$.\\
+Let $\epsilon > 0$ be given. Since $a_n \rightarrow L$ and $b_n \rightarrow M$ as $n \rightarrow \infty$, there is
+\begin{align*}
+ 	& (1) \exists N_1 \in \mathbb{N} \ni n > N_1 \implies | a_n - L| < \frac{\epsilon}{2} \\
+ 	& (2) \exists N_2 \in \mathbb{N} \ni n > N_2 \implies | b_n - M| < \frac{\epsilon}{2} \\
+\end{align*}
+Select $N = \max(N_1, N_2)$
+\begin{align*}
+ 	& \forall n > N, (1) \wedge (2) && \\
+ 	& |a_n - L| < \frac{\epsilon}{2} \wedge |b_n - M| < \frac{\epsilon}{2} && \\
+ 	& \implies (L - a_n) + (b_n - M) < \epsilon && \\
+ 	& \implies (M - b_n) - (L - a_n) + \epsilon > 0 && \\
+ 	& \implies (M - b_n) - (L - a_n) + \epsilon +b_n > a_n && \text{Since } a_n \leq b_n \\
+ 	& \implies L - a_n + a_n < b_n + M - b_n + \epsilon && \\
+ 	& \implies L < M + \epsilon && \\
+ 	& \implies L \leq M & \text{Since $\epsilon$ was arbitrary, the result is proved}\\
+\end{align*}
+\section{Theorem 54: \\(Squeeze Theorem/Sandwich Theorem)}
+(Theorem 2.6 in text) Suppose we have
+\begin{align*}
+ 	& \{a_n\}, \{ b_n \}, \{ c_n\} \subset \mathbb{R} \ni \forall n \in \mathbb{N}, a_n \leq b_n \leq c_n \\
+\end{align*}
+If $a_n$ converges to $L$ and $c_n$ converges to $L$, then $b_n$ is convergent and $b_n \rightarrow \infty$ as $n \rightarrow \infty$.
+\subsection{Proof: (Sketch)}
+Select $N \in \mathbb{N}$ such that $\forall n > N, |a_n - L| < \epsilon$ and $|c_n - L| < \epsilon$. Then
+\begin{align*}
+ 	& -\epsilon < a_n - L \leq b_n - L \leq c_n - L < \epsilon \\
+ 	& \implies | b_n - L | < \epsilon \\
+\end{align*}
+Not full proof, but underlying mechanics. Details on pg. 87 (Keep these in mind for problems 2 and 4 from the assignment)
+\section{Infinite Limits:}
+\subsection{Defintion 55: (p.88)}
+A sequence $\{a_n\} \subset \mathbb{R}$
+\begin{itemize}
+\item \underline{Diverges to $+\infty$}, denoted by $\lim_{n \rightarrow \infty}a_n = +\infty$ or $a_n \rightarrow \infty$ as $n \rightarrow \infty$ if
+\begin{align*}
+ 	& \forall M \in \mathbb{R}, \exists N \ni \forall n \in \mathbb{N}, n > N \implies a_n > M
+\end{align*}
+\item \underline{Diverges to $-\infty$}, denoted by $\lim_{n \rightarrow \infty} a_n = -\infty$ or $a_n \rightarrow -\infty$ as $n \rightarrow \infty$ if
+\begin{align*}
+ 	& \forall m \in \mathbb{R}, \exists N \ni \forall n \in \mathbb{N}, n > N \implies a_n < m \\
+\end{align*}
+\end{itemize}
+\subsection{Remark 56}
+\begin{itemize}
+\item $\lim_{n \rightarrow \infty} a_n = +\infty$ and $\lim_{n \rightarrow \infty} a_n = -\infty$ indicates that the sequcence is not convergent. The sequence diverges by either growing without bound or become more negative without bounds.
+\item $\lim_{n \rightarrow \infty} a_n = +\infty$, for each $M$, there is a tail of $a_n$ that stays above $M$. Similar remark for $\lim_{n \rightarrow \infty} a_n = -\infty$
+\end{itemize}
+\section{Example 57: (Problem 2)}
+Find
+\begin{align*}
+ 	& \lim_{n \rightarrow \infty} \frac{n^2 - 4n}{n+3} \\
+\end{align*}
+If it exists.
+\subsection{Initial Thoughts}
+As $n \rightarrow \infty, n^2 - 4n$ is dominated by $n^2$ and $n + 3$ is dominated by $n$, so $\frac{n^2 - 4n}{n + 3}$ looks like $\frac{n^2}{n} = n$ as $n$ gets large.
+\subsection{Conjecture}
+\begin{align*}
+ 	& \frac{n^2 - 4n}{n + 3} = +\infty \\
+\end{align*}
+\subsection{Scratch}
+\begin{align*}
+ 	& \frac{n^2 - 4n}{n + 3} \\
+ 	& = \frac{n^2 - 4n}{n + 3} - n + n \\
+ 	& = \frac{n^2 - 4n - n^2 - 3n}{n+3} + n \\
+ 	& = \frac{-7n}{n + 3} + n \\
+ 	& = -7 (\frac{n}{n + 3}) + n \\
+ 	& \frac{n}{n + 3} < 1 \\
+\end{align*}
+Pick $N = M + 7$, so $n > N \implies n - 7 > M$.
+\subsection{Proof}
+Let $M \in \mathbb{R}$ be given. Select $N \in mathbb{N} \ni N \geq M + 7$. Then
+\begin{align*}
+ 	& \forall n > N, \frac{n^2 - 4n}{n + 3} \\
+ 	&  = \frac{n^2 + 4n}{n + 3} - n + n \\
+ 	& = (-7)(\frac{n}{n+e}) + n > n - 7 > N - 7 \geq M \\
+\end{align*}
+Since $M \in \mathbb{R}$ was arbitrary, $\lim_{n \rightarrow \infty} \frac{n^2 - 4n}{n+3} = +\infty$.
+\subsection{Useful Fact:}
+\begin{align*}
+ 	& \lim_{n \rightarrow \infty} n^\alpha = \begin{cases} +\infty, \alpha > 0\\
+ 	1, \alpha = 0\\
+ 	0, \alpha < 0\\
+ 	\end{cases}\\
+\end{align*}
+\section{Theorem 58: (Monotone Convergence Theorem)}
+(Theorem 2.3 in the book)\\
+Let $\{ a_n \}_{n = 1}^\infty \subset \mathbb{R}$ be given. \\ If $ \{ a_n \}_{n = 1}^\infty$ is bounded and eventually monotone, then the sequence converges.
+\end{document}
